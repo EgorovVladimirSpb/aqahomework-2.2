@@ -1,6 +1,4 @@
-
-
-image: Ubuntu
+image: Ubuntu1804
 
 branches:
   only:
