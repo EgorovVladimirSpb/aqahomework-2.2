@@ -2,10 +2,12 @@ package ru.netology;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -30,6 +32,7 @@ public class DeliveryTest {
         $("[name='phone']").setValue("+79998887766");
         $("[data-test-id=agreement]").click();
         $("[class=button__text]").click();
-        $(withText("Успешно!")).waitUntil(visible,(15000));
+        $(withText("Успешно!")).shouldBe(visible, Duration.ofMillis(15000));
+        $("[class='notification__content']").shouldHave(text(formatter.format(newDate)));
     }
 }
